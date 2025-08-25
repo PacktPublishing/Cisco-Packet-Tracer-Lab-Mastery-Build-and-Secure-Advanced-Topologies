@@ -1,0 +1,23 @@
+All:
+interface gig0/0/0
+ip nat outside
+exit
+
+interface gig0/0/1
+ip nat inside
+exit
+
+Hub:
+access-list 1 permit 10.1.1.0 0.0.0.255
+
+
+Shop#1:
+access-list 1 permit 172.16.1.0 0.0.0.255
+
+
+Shop#2
+access-list 1 permit 172.16.2.0 0.0.0.255
+
+
+All:
+ip nat inside source list 1 interface Gi0/0/0 overload

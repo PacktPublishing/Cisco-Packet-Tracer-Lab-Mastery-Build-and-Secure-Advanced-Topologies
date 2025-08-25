@@ -1,0 +1,235 @@
+Thinking of Security Protocols at the Access Layer
+In a well-designed three-tier switch architecture, the Access Layer forms the first line of defense in your enterprise network. This is the layer where end-user devices — like PCs, printers, IP phones, and IoT devices — connect. As such, it's also the layer most vulnerable to internal threats, misconfigurations, or unauthorized access.
+
+While the core and distribution layers focus on routing, policy, and high-speed forwarding, the access layer is where security must be tightly enforced. Let’s explore the key security implementations that should be in place at this layer.
+
+
+
+
+
+
+
+🧱 1. Port Security
+Port Security is a fundamental feature to restrict which MAC addresses are allowed on a given switch port.
+
+🔧 How it works:
+You can specify a maximum number of MAC addresses per port.
+
+Optionally, lock a specific MAC address to that port.
+
+If a rogue device is plugged in, the port can shut down, restrict, or protect based on configuration.
+
+✅ Why it matters:
+Prevents unauthorized devices from connecting.
+
+Helps mitigate MAC flooding attacks and switch CAM table overflows.
+
+
+
+
+
+
+
+🎭 2. 802.1X Port-Based Authentication
+802.1X enforces user or device authentication before granting access to the network.
+
+🔧 How it works:
+Integrates with RADIUS servers like Cisco ISE.
+
+Only authenticated users/devices are placed onto the network.
+
+Supports dynamic VLAN assignment and posture assessment.
+
+✅ Why it matters:
+Ensures only authorized users can connect.
+
+Helps enforce identity-based policies right at the port level.
+
+
+
+
+
+
+
+🚫 3. Unused Port Shutdown
+Every unused access port should be administratively shut down.
+
+🔧 Configuration:
+interface range fa0/10 - 24
+ shutdown
+✅ Why it matters:
+Prevents rogue access through unmonitored ports.
+
+Makes switch security more predictable and easier to manage.
+
+
+
+
+
+
+
+🔐 4. DHCP Snooping
+DHCP Snooping protects the network from rogue DHCP servers handing out malicious IP configurations.
+
+🔧 How it works:
+Allows DHCP responses only from trusted ports (e.g., uplinks to DHCP server).
+
+Builds a table of legitimate IP-to-MAC-to-Port bindings.
+
+✅ Why it matters:
+Blocks man-in-the-middle attacks via rogue DHCP.
+
+Works in conjunction with IP Source Guard and Dynamic ARP Inspection.
+
+
+
+
+
+
+
+🧩 5. Dynamic ARP Inspection (DAI)
+DAI helps prevent ARP spoofing and poisoning by validating ARP packets against the DHCP snooping table.
+
+🔧 How it works:
+Only allows ARP replies with matching MAC-IP-Port combinations.
+
+Invalid packets are dropped.
+
+✅ Why it matters:
+Mitigates ARP-based MITM attacks.
+
+Prevents devices from impersonating gateways or other hosts.
+
+
+
+
+
+
+
+🧼 6. BPDU Guard
+BPDU Guard protects against unauthorized switches being plugged into access ports.
+
+🔧 How it works:
+If a Bridge Protocol Data Unit (BPDU) is received on a port configured for end devices, the port is shut down.
+
+✅ Why it matters:
+Prevents spanning-tree manipulation.
+
+Stops users from accidentally or maliciously adding switches that could affect topology.
+
+
+
+
+
+
+
+🚦 7. Storm Control
+Storm Control limits the bandwidth used by broadcast, multicast, or unicast traffic on an interface.
+
+✅ Why it matters:
+Prevents broadcast storms that can cripple a segment.
+
+Protects switch CPU and memory from being overwhelmed.
+
+
+
+
+
+
+
+🛡️ 8. Private VLAN Edge (Protected Ports)
+This feature isolates ports at Layer 2 even if they’re on the same VLAN.
+
+🔧 Use case:
+Devices like student PCs, printers, or IoT devices that shouldn’t talk to each other directly.
+
+Still able to reach the gateway or uplink.
+
+✅ Why it matters:
+Prevents host-to-host traffic in shared VLANs.
+
+Reduces lateral movement for threats like malware.
+
+
+
+
+
+
+
+👁️ 9. ACLs on VLAN Interfaces
+Even at the access layer, you can apply access control lists (ACLs) to limit traffic going into or out of VLANs.
+
+✅ Why it matters:
+Provides granular control on which subnets or services users can access.
+
+Blocks unauthorized access to critical internal systems
+
+Play
+1. Introduction to Course
+2min
+Play
+2. How to get the Most from this Course
+2min
+Play
+3. Dan Mill Training
+2min
+Play
+4. What is Cisco Packet Tracer?
+3min
+Play
+5. How to Install Cisco Packet Tracer
+6min
+Play
+6. Switching Architecture Discussion
+7min
+Play
+7. The Core Layer
+6min
+Play
+8. The Distribution Layer
+6min
+Play
+9. The Access Layer
+6min
+Play
+10. End User Devices
+3min
+Play
+11. Cabling Requirements
+6min
+Play
+12. Connecting our Three-Tiers to the Rest of the Network
+1min
+Start
+Assignment 1: Assignment: Explain the Difference Between Core, Distribution, and Access Layers
+Play
+13. VLANs and Layer 3 IP Addressing
+2min
+Play
+14. Configuring VLAN Databases
+3min
+Play
+15. Trunk Ports
+6min
+Play
+16. Etherchannels (Port-Channels)
+4min
+Play
+17. Access Ports
+5min
+Play
+18. Physical Topology
+1min
+Play
+19. Gateway IP and HSRP (Hot Standby Routing Protocol)
+8min
+Play
+20. Spanning Tree
+5min
+Play
+21. DHCP and DHCP Relay
+8min
+Start
+22. Thinking of Security Protocols at the Access Layer
+2min
+

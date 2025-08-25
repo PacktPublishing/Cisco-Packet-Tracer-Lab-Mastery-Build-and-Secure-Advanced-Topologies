@@ -1,0 +1,45 @@
+Control DMZ Outbound
+Controlling DMZ Outbound Traffic to the Internal LAN and Internet
+In a properly segmented network, the DMZ (Demilitarized Zone) sits between the untrusted Internet and your trusted Internal LAN. It's where public-facing services like web servers, mail servers, or DNS reside. One of the most critical aspects of this architecture is controlling outbound traffic from the DMZ, both to the Internet and to the Internal LAN.
+
+Let’s break down why and how we should control it.
+
+
+
+🔎 Why Control DMZ Outbound Traffic?
+Prevent Lateral Movement
+If a DMZ server is compromised, the attacker could attempt to move into your Internal LAN to exfiltrate data or escalate attacks. Controlling traffic prevents this.
+
+Limit Exposure to External Threats
+By restricting which DMZ hosts can access the Internet (and how), you reduce the chance of malware calling out to command-and-control servers or leaking data.
+
+Enforce Least Privilege
+No device should have more access than it needs. Outbound access should be based on actual service requirements — not convenience.
+
+
+
+🧱 Firewall or Router-Based Enforcement?
+In enterprise setups, DMZ security policies are usually enforced on a dedicated firewall. However, in environments using Cisco routers, we can still enforce strong outbound controls using:
+
+Extended Access Control Lists (ACLs)
+
+Zoning via router interfaces
+
+NAT rules
+
+Routing segmentation (or the lack thereof)
+
+
+
+🛡 Summary
+Controlling outbound traffic from your DMZ is just as important as protecting it from inbound threats. In a router-based design, you can secure the DMZ by:
+
+Creating explicit ACLs to allow only necessary outbound traffic.
+
+Blocking access to the Internal LAN by default.
+
+Limiting DNS, HTTP, or NTP based on server roles.
+
+Ensuring return traffic is only allowed for legitimate sessions.
+
+Remember: Your DMZ is exposed by design — but what it can access should be carefully minimized to reduce risk and maintain a secure perimeter.

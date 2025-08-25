@@ -1,0 +1,60 @@
+What is MQTT?
+As the Internet of Things (IoT) continues to grow, lightweight and efficient communication protocols have become increasingly important. One such protocol is MQTT (Message Queuing Telemetry Transport)—a publish-subscribe messaging protocol designed for low-bandwidth, high-latency, or unreliable networks.
+
+In this article, we’ll explore what MQTT is, how it works, and how you can use it within Cisco Packet Tracer.
+
+
+
+What is MQTT?
+MQTT stands for Message Queuing Telemetry Transport. It is a simple, lightweight messaging protocol designed for constrained devices and low-bandwidth, high-latency, or unreliable networks—common characteristics of IoT environments.
+
+It follows a publish-subscribe model, meaning:
+
+Publishers send (publish) messages to a topic.
+
+Subscribers receive messages by subscribing to a topic.
+
+An MQTT Broker manages all message traffic between publishers and subscribers.
+
+
+
+Key Features:
+Lightweight and low-overhead
+
+Efficient for IoT communication
+
+Supports Quality of Service (QoS) levels
+
+Uses TCP/IP for transport
+
+
+
+MQTT Components in Cisco Packet Tracer
+Cisco Packet Tracer includes simulated IoT devices and MQTT support, making it ideal for experimenting with MQTT communication.
+
+Here are the core components you’ll encounter:
+
+1. MQTT Broker
+Acts as the central hub that manages message distribution.
+
+In Packet Tracer, the broker is often found within the Home Gateway device.
+
+It receives published messages and forwards them to the appropriate subscribers.
+
+2. Publishers (IoT Sensors)
+Devices like temperature sensors or motion detectors publish data to the broker.
+
+For example, a temperature sensor might publish data to the topic home/livingroom/temp.
+
+3. Subscribers (IoT Actuators or Monitoring Devices)
+Devices such as smart fans or alert systems can subscribe to topics.
+
+When new data is published, the broker sends it to all subscribed devices.
+
+
+
+
+
+Conclusion
+MQTT is a cornerstone protocol in the IoT world, and Cisco Packet Tracer provides a simplified environment for learning how it works. Whether you're configuring sensors to publish environmental data or actuators to respond to events, MQTT in Packet Tracer offers a hands-on way to understand modern device communication.
+

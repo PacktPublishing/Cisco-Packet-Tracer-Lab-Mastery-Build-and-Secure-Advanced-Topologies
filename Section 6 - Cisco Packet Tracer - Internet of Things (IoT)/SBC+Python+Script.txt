@@ -1,0 +1,14 @@
+from gpio import *
+from time import *
+
+def main():
+	while True:
+		value = digitalRead(1)        # Read input from the Rocker Switch (pin 1)
+		if value > 0 :
+			customWrite(0, 2)        # If switch is ON, set the Fan (pin 0) to speed 2 (high)
+		else :
+			customWrite(0, 0)        # If switch is OFF, stop the Fan
+		delay(500)                   # Wait half a second before checking again
+
+if __name__ == "__main__":
+	main()

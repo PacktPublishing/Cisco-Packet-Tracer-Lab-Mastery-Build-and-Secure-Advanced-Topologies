@@ -1,0 +1,49 @@
+How to Create Your Own IoT Thing in Packet Tracer
+In this activity, you'll design your own custom IoT device — a Security Camera — and add it to your simulated network in Cisco Packet Tracer.
+
+Part 1: Create the Thing
+Open Cisco Packet Tracer
+
+Add a new Thing to the workspace (Components > Boards > Thing):
+
+Go to the "Thing" category in the device selection box.
+
+Drag a generic Thing onto the workspace.
+
+Rename the device:
+
+Open the device config window.
+
+Go to Config > Global Settings.
+
+Change the Display Name to Security Camera.
+
+Edit the device properties:
+
+Click Advanced > Thing Editor > Properties.
+
+Rename the Component Name to Security Camera.
+
+Set the Slot Mapping to Digital, and use **Slot 1`.
+
+Click New to upload a custom image (e.g. a security camera icon) as the device's icon.
+
+Part 2: Add to the Network
+Add a network adapter:
+
+Go to Advanced > I/O Config.
+
+Set the network adapter to PT-IOT-NM-1CFE for wired, or PT-IOT-NM-1W for wireless.
+
+Connect to the network:
+
+Use a Copper Straight-Through cable to connect the device to the Wireless Router's Ethernet port.
+
+Enable DHCP:
+
+Go back to Config > FastEthernet0.
+
+Set IP configuration to DHCP so it gets an IP address automatically.
+
+Your custom Security Camera is now part of your IoT simulation!
+

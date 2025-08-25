@@ -1,0 +1,28 @@
+IoT Specific Devices
+Alongside the traditional networking equipment like routers and switches, Cisco Packet Tracer 8.2 introduces a wide range of IoT-specific devices in the Components Box.
+
+These are divided into two main groups:
+
+Smart Things
+Smart Things are network-enabled devices — they can connect directly to a Home Gateway or Registration Server. These represent real-world smart objects and are grouped into four categories:
+
+Home (e.g., smart TVs, lights)
+
+Smart City
+
+Industrial
+
+Power Grid
+
+Components
+Components are non-networked physical elements that connect to either a Microcontroller (MCU-PT) or a Single Board Computer (SBC-PT). These devices don’t have direct network access and instead rely on their controller to send and receive data. They interact through digital or analog input/output pins.
+
+Components fall into three categories:
+
+Boards – These include microcontrollers, SBCs, and a special device called “Thing,” used to build custom smart devices like coffee machines or alarms.
+
+Actuators – Devices that perform actions or affect the environment (like motors, buzzers, or smart doors).
+
+Sensors – Devices that detect physical conditions (like light, temperature, motion, or user input through buttons or knobs).
+
+This structure allows you to build realistic IoT setups, connecting sensors and actuators to controllers — just like in real-world smart systems.
