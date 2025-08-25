@@ -1,0 +1,140 @@
+!
+version 12.2(37)SE1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname TR3-SW01
+!
+!
+!
+!
+!
+!
+ip routing
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode rapid-pvst
+!
+!
+!
+!
+!
+!
+interface Loopback1
+ ip address 10.50.50.7 255.255.255.255
+!
+interface FastEthernet0/1
+ switchport access vlan 33
+ switchport mode access
+!
+interface FastEthernet0/2
+!
+interface FastEthernet0/3
+!
+interface FastEthernet0/4
+!
+interface FastEthernet0/5
+!
+interface FastEthernet0/6
+!
+interface FastEthernet0/7
+!
+interface FastEthernet0/8
+!
+interface FastEthernet0/9
+!
+interface FastEthernet0/10
+!
+interface FastEthernet0/11
+!
+interface FastEthernet0/12
+!
+interface FastEthernet0/13
+!
+interface FastEthernet0/14
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+ no switchport
+ ip address 10.99.99.45 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/19
+ no switchport
+ ip address 10.99.99.49 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/20
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+!
+interface FastEthernet0/24
+!
+interface GigabitEthernet0/1
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan33
+ mac-address 0001.43c2.d301
+ ip address 10.1.33.241 255.255.255.0
+!
+router ospf 1
+ router-id 10.50.50.7
+ log-adjacency-changes
+ network 10.99.99.44 0.0.0.3 area 0
+ network 10.99.99.48 0.0.0.3 area 0
+ network 10.1.33.0 0.0.0.255 area 0
+ network 10.50.50.7 0.0.0.0 area 0
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+!
+end
+

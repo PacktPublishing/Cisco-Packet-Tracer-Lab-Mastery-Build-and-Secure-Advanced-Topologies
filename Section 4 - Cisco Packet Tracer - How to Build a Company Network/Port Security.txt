@@ -1,0 +1,183 @@
+Port Security
+Introduction to Port Security
+Port Security is a network security feature implemented on switches to restrict unauthorized access to a network by controlling the devices that can connect to switch ports. It helps protect against MAC address flooding attacks, rogue devices, and unauthorized network access by limiting the number of MAC addresses that can be learned on a specific port.
+
+Port Security is commonly implemented in enterprise networks, data centers, and environments where physical security measures alone are insufficient to prevent unauthorized access.
+
+How Port Security Works
+Port Security operates at Layer 2 (Data Link Layer) of the OSI model and is designed to enhance network security by enforcing restrictions on switch ports. It works by:
+
+
+
+Learning MAC Addresses: The switch dynamically learns or manually assigns specific MAC addresses to a port.
+
+Limiting MAC Addresses: It restricts the number of MAC addresses that can be learned on a given port.
+
+Enforcing Security Policies: If an unauthorized MAC address is detected, the switch can take predefined actions such as shutting down the port, restricting access, or generating alerts.
+
+
+
+Port Security Configuration Modes
+Port Security can be configured in different ways depending on the level of security needed:
+
+Static MAC Address Assignment:
+
+Administrators manually specify allowed MAC addresses for a switch port.
+
+Only the configured MAC addresses can send or receive traffic on the port.
+
+Example use case: High-security environments such as financial institutions.
+
+Dynamic MAC Address Learning:
+
+The switch learns MAC addresses dynamically until the maximum allowed limit is reached.
+
+Once learned, the MAC addresses remain in the switch’s memory until the port is reset.
+
+Example use case: Temporary access points where authorized devices connect but do not change frequently.
+
+Sticky MAC Address Learning:
+
+The switch learns MAC addresses dynamically and saves them in its running configuration.
+
+If the switch reboots, the learned addresses remain valid.
+
+Example use case: Corporate offices where the same devices connect consistently.
+
+
+
+Configuring Port Security on Cisco Switches
+Cisco switches provide a straightforward way to enable and configure Port Security. Below is an example configuration for enabling Port Security on an access port:
+
+Basic Port Security Configuration
+TR3-SW01# configure terminal
+TR3-SW01(config)# interface FastEthernet 0/1
+TR3-SW01(config-if)# switchport port-security
+TR3-SW01(config-if)# switchport port-security maximum 1
+TR3-SW01(config-if)# switchport port-security violation shutdown
+TR3-SW01(config-if)# switchport port-security mac-address sticky
+TR3-SW01(config-if)# exit
+TR3-SW01(config)# exit
+TR3-SW01# write memory
+Explanation of Commands:
+
+
+switchport port-security → Enables Port Security on the interface.
+
+switchport port-security maximum 2 → Limits the number of allowed MAC addresses to 1.
+
+switchport port-security violation shutdown → Shuts down the port if an unauthorized MAC address is detected.
+
+switchport port-security mac-address sticky → Learns and retains MAC addresses dynamically.
+
+
+
+Port Security Violation Modes
+When an unauthorized device tries to connect to a secured port, Port Security can respond in different ways based on the configured violation mode:
+
+1. Protect Mode
+Drops traffic from unauthorized MAC addresses but does not log or alert administrators.
+
+The port remains operational for authorized devices.
+
+Example use case: Environments where administrators do not want to disrupt network connectivity.
+
+2. Restrict Mode
+Drops traffic from unauthorized MAC addresses and logs the violation.
+
+Sends SNMP trap and syslog messages.
+
+Example use case: Networks that require logging of security incidents for auditing purposes.
+
+3. Shutdown Mode (Default)
+The port is immediately shut down (err-disabled state) if an unauthorized MAC address is detected.
+
+Requires manual intervention or automatic error recovery to restore functionality.
+
+Example use case: High-security environments where unauthorized access is strictly prohibited.
+
+
+
+
+
+Example Scenarios
+Scenario 1: Preventing Unauthorized Devices in an Office
+A corporate office wants to prevent unauthorized laptops or personal devices from being connected to the network. By enabling Port Security, administrators can ensure that only company-approved MAC addresses are allowed on each port.
+
+Configuration: Use sticky MAC addresses to learn and store devices permanently.
+
+Benefit: Prevents employees from plugging in unauthorized devices.
+
+
+
+Scenario 2: Protecting Against MAC Address Flooding Attacks
+An attacker may use a tool like macof to flood a switch with thousands of fake MAC addresses, causing the switch’s MAC address table to overflow and behave as a hub, potentially exposing traffic to eavesdropping.
+
+Configuration: Limit the number of MAC addresses per port.
+
+Benefit: Prevents the switch from being overwhelmed by excessive MAC addresses.
+
+Example attack command using macof:
+
+macof -i eth0
+With Port Security enabled, this attack is mitigated as the port will reach its limit and either drop packets (Protect mode), log violations (Restrict mode), or shut down (Shutdown mode).
+
+
+
+Scenario 3: Secure Conference Room Network Access
+A company has a conference room where guests often connect to the network using their devices. The IT team wants to allow a limited number of guest devices without compromising security.
+
+Configuration: Set a maximum of 5 dynamically learned MAC addresses.
+
+Benefit: Allows guest devices while preventing an unlimited number of unknown connections.
+
+Example Configuration:
+
+TR3-SW01(config-if)# switchport port-security maximum 5
+TR3-SW01(config-if)# switchport port-security violation restrict
+
+
+Advantages of Using Port Security
+Prevents Unauthorized Access: Ensures that only approved devices connect to the network.
+
+Mitigates MAC Address Flooding Attacks: Helps prevent Layer 2 attacks that exploit MAC address tables.
+
+Enhances Network Stability: Reduces the risk of rogue devices causing disruptions.
+
+Provides Logging and Auditing: In Restrict mode, logs are generated for security monitoring.
+
+Improves Compliance: Helps meet security policies and regulatory requirements.
+
+
+
+Limitations and Challenges of Port Security
+While Port Security is an effective security measure, it has some limitations:
+
+Not Scalable for Large Networks: Manually managing MAC address lists can be cumbersome.
+
+Can Cause Network Disruptions: If misconfigured, legitimate devices may be blocked.
+
+Does Not Prevent VLAN Hopping or Other Layer 2 Attacks: Port Security only restricts MAC address access, but VLAN hopping and ARP spoofing require additional security measures.
+
+No Encryption: It does not encrypt traffic or prevent man-in-the-middle attacks.
+
+
+
+Best Practices for Implementing Port Security
+To maximize security while minimizing disruptions, follow these best practices:
+
+Use Sticky MAC Addressing for Stability: Helps retain learned addresses and prevents unauthorized devices.
+
+Limit the Number of MAC Addresses Per Port: Prevents MAC flooding attacks.
+
+Choose the Right Violation Mode: Use Restrict mode for logging without disruption and Shutdown mode for strict security.
+
+Monitor Logs and Alerts: Regularly check syslog and SNMP traps for security violations.
+
+Combine with Other Security Measures: Use 802.1X authentication, DHCP snooping, and dynamic ARP inspection for additional protection.
+
+
+
+Conclusion
+Port Security is a fundamental Layer 2 security feature that enhances network security by controlling MAC address access to switch ports. It helps prevent unauthorized access, mitigates MAC flooding attacks, and enforces security policies in enterprise environments. However, it must be carefully configured and monitored to avoid unintended disruptions. When combined with other security mechanisms, Port Security plays a crucial role in securing modern networks.
+

@@ -1,0 +1,51 @@
+======================CORE1================================
+
+interface range GigabitEthernet1/0/10-11
+channel-group 11 mode active
+
+interface range GigabitEthernet1/0/12-13
+channel-group 12 mode active
+
+interface range GigabitEthernet1/0/14-15
+channel-group 13 mode active
+
+interface port-channel 11
+switchport mode trunk
+switchport trunk native vlan 10
+switchport trunk allowed vlan 10,20,30
+
+interface port-channel 12
+switchport mode trunk
+switchport trunk native vlan 10
+switchport trunk allowed vlan 10,20,30
+
+interface port-channel 13
+switchport mode trunk
+switchport trunk native vlan 10
+switchport trunk allowed vlan 10,20,30
+
+======================CORE2================================
+
+interface range GigabitEthernet1/0/12-13
+channel-group 14 mode active
+
+interface range GigabitEthernet1/0/14-15
+channel-group 15 mode active
+
+interface range GigabitEthernet1/0/16-17
+channel-group 16 mode active
+
+interface port-channel 14
+switchport mode trunk
+switchport trunk native vlan 10
+switchport trunk allowed vlan 10,20,30
+
+interface port-channel 15
+switchport mode trunk
+switchport trunk native vlan 10
+switchport trunk allowed vlan 10,20,30
+
+interface port-channel 16
+switchport mode trunk
+switchport trunk native vlan 10
+switchport trunk allowed vlan 10,20,30

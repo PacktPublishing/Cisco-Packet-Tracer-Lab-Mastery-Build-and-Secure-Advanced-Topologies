@@ -1,0 +1,53 @@
+======================ACCESS1================================
+
+interface range Fa0/10-11
+channel-group 1 mode active
+
+interface range Fa0/12-13
+channel-group 2 mode active
+
+interface port-channel 1
+switchport mode trunk
+switchport trunk native vlan 10
+switchport trunk allowed vlan 10,20,30
+
+interface port-channel 2
+switchport mode trunk
+switchport trunk native vlan 10
+switchport trunk allowed vlan 10,20,30
+
+======================ACCESS2================================
+
+interface range Fa0/12-13
+channel-group 1 mode active
+
+interface range Fa0/14-15
+channel-group 2 mode active
+
+interface port-channel 1
+switchport mode trunk
+switchport trunk native vlan 10
+switchport trunk allowed vlan 10,20,30
+
+interface port-channel 2
+switchport mode trunk
+switchport trunk native vlan 10
+switchport trunk allowed vlan 10,20,30
+
+======================ACCESS3================================
+
+interface range Fa0/14-15
+channel-group 1 mode active
+
+interface range Fa0/16-17
+channel-group 2 mode active
+
+interface port-channel 1
+switchport mode trunk
+switchport trunk native vlan 10
+switchport trunk allowed vlan 10,20,30
+
+interface port-channel 2
+switchport mode trunk
+switchport trunk native vlan 10
+switchport trunk allowed vlan 10,20,30
